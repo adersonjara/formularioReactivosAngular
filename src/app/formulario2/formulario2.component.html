@@ -1,0 +1,60 @@
+<form [formGroup]="formularioForm" (ngSubmit)="onSubmit()">
+  
+    <label>
+      Nombres:
+      <input type="text" formControlName="nombres">
+    </label>
+    <br>
+    <br>
+  
+    <label>
+      Apellidos:
+      <input type="text" formControlName="apellidos">
+    </label>
+    <br>
+    <br>
+
+    <div formGroupName="direccion">
+        <h3>Dirección</h3>
+      
+        <label>
+          Calle:
+          <input type="text" formControlName="calle">
+        </label>
+      
+        <label>
+          Número:
+          <input type="text" formControlName="numero">
+        </label>
+        
+        <label>
+          Ciudad:
+          <input type="text" formControlName="ciudad">
+        </label>
+      
+      </div>
+    <br>
+    <br>
+    <p>
+        <button type="button" (click)="actualizarDatos()">Actualizar</button>
+    </p>
+    <button type="submit" [disabled]="!formularioForm.valid">Enviar</button>
+    <div formArrayName="aliases">
+        <h3>Aliases</h3> <button type="button" (click)="addAlias()">Add Alias</button>
+      
+        <div *ngFor="let alias of aliases.controls; let i=index">
+          <!-- The repeated alias template -->
+          <label>
+            Alias:
+            <input type="text" [formControlName]="i">
+          </label>
+        </div>
+      </div>
+
+  </form>
+
+  
+
+  <p>
+    Form Status: {{ formularioForm.status }}
+  </p>
